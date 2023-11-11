@@ -25,11 +25,18 @@ func HandleOneArg(arg string) {
 		// can i do a dictionary with pointers to methods? {help: handleHelp, test: handleTtest}
 	}
 
-	validation := validate.Url(arg)
+	urlValidation := validate.Url(arg)
 
-	if validation {
-		result := httpclient.Get(arg)
-		fmt.Println(result)
+	if urlValidation {
+		body, err := httpclient.Get(arg)
+
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+
+		fmt.Println(string(body))
+
 	} else {
 		fmt.Println("invalid url")
 	}
