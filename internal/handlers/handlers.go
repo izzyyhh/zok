@@ -43,5 +43,16 @@ func HandleOneArg(arg string) {
 }
 
 func handleHelp() {
-	fmt.Println("HELPING YOU :)")
+	const instructions = `
+Usage: zok [http method] [flags] <url>
+zok supports following http methods: 
+	- GET (default)
+	- POST
+
+zok has following flags:
+	POST:	-d, --data`
+
+	fmt.Println(instructions)
 }
+
+// TODO add flags with flag package, fisrt one data for post req
