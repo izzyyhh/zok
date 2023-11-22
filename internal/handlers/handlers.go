@@ -17,7 +17,11 @@ func HandleArgs(args []string) {
 
 		case GET:
 			handleGet(args)
+
+		case POST:
+			handlePost(args)
 		}
+
 	} else {
 		fmt.Printf("subcommand '%s' is not supported", args[0])
 	}

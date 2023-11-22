@@ -13,6 +13,6 @@ func main() {
 	if len(args) == 0 {
 		fmt.Println("zok is ready to make requests, for help use:\n'zok help'")
 	} else {
-        handlers.HandleArgs(args)
-    }
+		handlers.HandleArgs(args)
+	}
 }
