@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"os"
@@ -18,14 +19,17 @@ func handlePost(args []string) {
 
 	postFlagSet := flag.NewFlagSet(POST, flag.ExitOnError)
 	postBody := postFlagSet.String("body", "", "HTTP body appended to the request")
+	contentType := postFlagSet.String("contentType", "", "The content type of the body")
+
 	err := postFlagSet.Parse(args[1 : len(args)-1])
 
 	if err != nil {
-		fmt.Println("could not parse body")
+		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	body, err := httpclient.Post(&url, postBody)
+	databuf := bytes.NewBuffer([]byte(*postBody))
+	body, err := httpclient.Post(&url, databuf, contentType)
 
 	if err != nil {
 		fmt.Println(err)

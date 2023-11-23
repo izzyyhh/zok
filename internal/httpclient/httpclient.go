@@ -30,9 +30,8 @@ func Get(url string) ([]byte, error) {
 	return body, nil
 }
 
-func Post(url *string, data *string) ([]byte, error) {
-	bodyBytes := []byte(*data)
-	resp, err := httpclient.Post(*url, http.DetectContentType(bodyBytes), bytes.NewReader(bodyBytes))
+func Post(url *string, data *bytes.Buffer, contentType *string) ([]byte, error) {
+	resp, err := httpclient.Post(*url, *contentType, data)
 
 	if err != nil {
 		return nil, err
