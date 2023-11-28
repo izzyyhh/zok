@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/izzyyhh/zok/internal/commands"
 	"github.com/izzyyhh/zok/utils/arrays"
 )
 
@@ -13,8 +14,7 @@ func HandleArgs(args []string) {
 	if arrays.Contains(availableSubcommands, subcommand) {
 		switch subcommand {
 		case HELP:
-			handleHelp()
-
+			commands.HelpCommand.Run(args)
 		case GET:
 			handleGet(args)
 
