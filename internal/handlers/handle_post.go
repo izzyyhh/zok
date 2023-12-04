@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/izzyyhh/zok/internal/commands"
 	"github.com/izzyyhh/zok/internal/httpclient"
 )
 
@@ -17,7 +18,7 @@ func handlePost(args []string) {
 
 	url := args[len(args)-1]
 
-	postFlagSet := flag.NewFlagSet(POST, flag.ExitOnError)
+	postFlagSet := flag.NewFlagSet(commands.POST, flag.ExitOnError)
 	postBody := postFlagSet.String("body", "", "HTTP body appended to the request")
 	contentType := postFlagSet.String("contentType", "", "The content type of the body")
 

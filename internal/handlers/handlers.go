@@ -2,27 +2,23 @@ package handlers
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	"github.com/izzyyhh/zok/internal/commands"
-	"github.com/izzyyhh/zok/utils/arrays"
 )
 
 func HandleArgs(args []string) {
 	subcommand := strings.ToLower(args[0])
+	idx := slices.IndexFunc(commands.AllCommands, func(c commands.Command) bool {
+		return c.Name == subcommand
+	})
 
-	if arrays.Contains(availableSubcommands, subcommand) {
-		switch subcommand {
-		case HELP:
-			commands.HelpCommand.Run(args)
-		case GET:
-			handleGet(args)
-
-		case POST:
-			handlePost(args)
-		}
-
+	if idx != -1 {
+		commands.AllCommands[idx].Run(args)
 	} else {
-		fmt.Printf("subcommand '%s' is not supported", args[0])
+		fmt.Println("subcommand not found...")
+		commands.HelpCommand.Run(args)
 	}
+
 }
