@@ -1,16 +1,20 @@
 package commands
 
-import "fmt"
+import (
+	"fmt"
+)
 
 var HelpCommand = Command{
-	Name:        "help",
-	Description: "help - shows available commands",
+	Name:        HELP,
+	Description: "shows available commands",
 	Run:         help,
 }
 
 func help(_ []string) {
+	fmt.Println("zok - available commands:")
+	fmt.Println("-------------------------")
+
 	for _, command := range AllCommands {
-		fmt.Println("zok - available commands:")
-		fmt.Println(command.Description)
+		fmt.Printf("%s\t%s\n", command.Name, command.Description)
 	}
 }

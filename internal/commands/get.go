@@ -8,8 +8,8 @@ import (
 )
 
 var GetCommand = Command{
-	Name:        "get",
-	Description: "get - sends http GET request",
+	Name:        GET,
+	Description: "sends http GET request",
 	Run:         get,
 }
 
